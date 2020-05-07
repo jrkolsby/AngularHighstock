@@ -1,0 +1,17 @@
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<div class="overlay" *ngIf="loading">
+    <div class="overlay-container">
+        <app-spinner></app-spinner>
+        Loading
+    </div>
+</div>
+<div class="header-container">
+    <div class="header-item">Last Updated {{lastUpdate}}</div>
+    <select class="header-item" (change)="selectTicker($event)">
+        <option *ngFor="let ticker of stocks">{{ticker}}</option>
+    </select>
+</div>
+<div id="container"></div>

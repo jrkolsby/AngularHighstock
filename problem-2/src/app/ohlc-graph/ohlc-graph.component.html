@@ -1,0 +1,29 @@
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<div class="overlay" *ngIf="loading">
+    <div class="overlay-container">
+        <app-spinner></app-spinner>
+        Loading
+    </div>
+</div>
+<div class="header-container">
+    <input class="input header-item" (change)="updateInput($event)" value="{{inputValue}}" placeholder="Enter space-seperated Quandl URLs" />
+    <div class="error header-item">{{error}}</div>
+    <div class="header-item">
+        Cached results:<br/>
+        <span *ngFor="let ticker of objectkeys(cache)">{{ticker}},</span>
+    </div>
+    <button class="header-item" (click)="fetchData()">Add</button>
+    <button class="header-item" (click)="clearCache()">Clear Cache</button>
+    <button class="header-item" (click)="graphCache()">Build Chart</button>
+    <button class="header-item" (click)="clearGraph()">Clear Chart</button>
+    <select class="header-item" (change)="updateSeries($event)">
+        <option value="open">Open</option>
+        <option value="high">High</option>
+        <option value="low">Low</option>
+        <option value="close">Close</option>
+    </select>
+</div>
+<div id="container"></div>
